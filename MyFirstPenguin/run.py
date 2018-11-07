@@ -2,7 +2,7 @@ import os
 import json
 import random
 import math
-
+import random
 #Wassup
 
 ROTATE_LEFT = "rotate-left"
@@ -64,7 +64,12 @@ def moveTowardsCenterOfMap(body):
 
 def chooseAction(body):
     action = PASS
-    action = moveTowardsPoint(body, body["enemies"][0]["x"], body["enemies"][0]["y"])
+    posX = random.randint(0, body["mapWidth"])
+    posY = random.randint(0, body["mapHeight"])
+    try:
+        action = moveTowardsPoint(body, body["enemies"][0]["x"], body["enemies"][0]["y"])
+    else:
+    action = moveTowardsPoint(body, posX, posY)
     return action
 
 env = os.environ
