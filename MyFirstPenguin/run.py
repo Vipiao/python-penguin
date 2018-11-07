@@ -68,9 +68,43 @@ def chooseAction(body):
     posY = random.randint(0, body["mapHeight"])
     try:
         action = moveTowardsPoint(body, body["enemies"][0]["x"], body["enemies"][0]["y"])
+        if shootIfPossible(body):
+    #       action = SHOOT
+
     except:
         action = moveTowardsPoint(body, posX, posY)
+        if shootIfPossible(body):
+    #       action = SHOOT
     return action
+
+
+def shootIfPossible(body):
+    you = body["you"]
+    direction = you["direction"]
+    myPosX = you["x"]
+    myPosY = you["y"]
+    enemy = body["enemies"][0]
+    try:
+        enX = enemy["x"]
+        enY = enemy["y"]
+    except:
+        return False
+
+    if direction == "right" and enX - myPosX > 0 and enY == myPosY:
+        print("Shooting")
+        return True
+    elif direction == "left" and enX - myPosX < 0 and enY == myPosY:
+        print("Shooting")
+        return True
+    elif direction == "bottom" and enY - myPosY > 0 and enX == myPosX:
+        print("Shooting")
+        return True
+    elif direction == "top" and enY - myPosY < 0 and enX == myPosX:
+        print("Shooting")
+        return True
+    else:
+        return False
+
 
 env = os.environ
 req_params_query = env['REQ_PARAMS_QUERY']
