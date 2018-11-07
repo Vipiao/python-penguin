@@ -68,8 +68,8 @@ def chooseAction(body):
     posY = random.randint(0, body["mapHeight"])
     try:
         action = moveTowardsPoint(body, body["enemies"][0]["x"], body["enemies"][0]["y"])
-    else:
-    action = moveTowardsPoint(body, posX, posY)
+    except:
+        action = moveTowardsPoint(body, posX, posY)
     return action
 
 env = os.environ
