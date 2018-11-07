@@ -3,6 +3,8 @@ import json
 import random
 import math
 
+#Wassup
+
 ROTATE_LEFT = "rotate-left"
 ROTATE_RIGHT = "rotate-right"
 ADVANCE = "advance"
