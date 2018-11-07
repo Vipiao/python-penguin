@@ -64,7 +64,7 @@ def moveTowardsCenterOfMap(body):
 
 def chooseAction(body):
     action = PASS
-    action = moveTowardsCenterOfMap(body)
+    action = moveTowardsPoint(body, body["enemies"][0]["x"], body["enemies"][0]["y"])
     return action
 
 env = os.environ
