@@ -3,7 +3,7 @@ import json
 import random
 import math
 import random
-#new shit
+#newest shit
 
 ROTATE_LEFT = "rotate-left"
 ROTATE_RIGHT = "rotate-right"
