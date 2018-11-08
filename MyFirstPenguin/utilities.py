@@ -1,5 +1,5 @@
 import math
-from movement import *
+from utilities import *
 
 
 
@@ -63,7 +63,7 @@ def closestPowerup(body):
     m = 1000000
     m_bonus = bonus_list[0]
     for bonus in bonus_list:
-        d = sqrt((x - bonus['x'])**2 + (y - bonus['y'])**2)
+        d = math.sqrt((x - bonus['x'])**2 + (y - bonus['y'])**2)
         if d < m:
             m = d
             m_bonus = bonus
@@ -85,7 +85,7 @@ def findClosestPower(body):
     m = 1000000
     m_heart = hearts[0]
     for heart in hearts:
-        d = sqrt((x - heart['x'])**2 + (y - heart['y'])**2)
+        d = math.sqrt((x - heart['x'])**2 + (y - heart['y'])**2)
         if d < m:
             m = d
             m_heart = heart
