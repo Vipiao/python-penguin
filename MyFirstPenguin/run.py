@@ -3,7 +3,7 @@ import json
 import random
 import math
 import random
-#Wassup
+#new shit
 
 ROTATE_LEFT = "rotate-left"
 ROTATE_RIGHT = "rotate-right"
@@ -78,6 +78,7 @@ def chooseAction(body):
     return action
 
 
+# noinspection PyInterpreter
 def shootIfPossible(body):
     you = body["you"]
     direction = you["direction"]
@@ -113,8 +114,8 @@ responseBody = open(env['res'], 'w')
 response = {}
 returnObject = {}
 if req_params_query == "info":
-    returnObject["name"] = "Pingu"
-    returnObject["team"] = "Team Python"
+    returnObject["name"] = "HunterXHunter"
+    returnObject["team"] = "Charming python"
 elif req_params_query == "command":    
     body = json.loads(open(env["req"], "r").read())
     returnObject["command"] = chooseAction(body)
