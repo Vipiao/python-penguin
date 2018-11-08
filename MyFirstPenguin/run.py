@@ -69,12 +69,12 @@ def chooseAction(body):
     try:
         action = moveTowardsPoint(body, body["enemies"][0]["x"], body["enemies"][0]["y"])
         if shootIfPossible(body):
-    #       action = SHOOT
+            action = SHOOT
 
     except:
         action = moveTowardsPoint(body, posX, posY)
         if shootIfPossible(body):
-    #       action = SHOOT
+            action = SHOOT
     return action
 
 
