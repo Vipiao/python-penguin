@@ -62,19 +62,45 @@ def moveTowardsCenterOfMap(body):
     centerPointY = math.floor(body["mapHeight"] / 2)
     return moveTowardsPoint(body, centerPointX, centerPointY)
 
+
+
+def findClosestPower(body):
+    hearts = [b for b in body["bonusTiles"] if b['type'] == 'weapon-power']
+    if len(hearts) == 0:
+        return -1, -1
+
+    you = body['you']
+    x = you['x']
+    y = you['y']
+
+    m = 1000000
+    m_heart = hearts[0]
+    for heart in hearts:
+        d = sqrt((x - heart['x'])**2 + (y - heart['y'])**2)
+        if d < m:
+            m = d
+            m_heart = heart
+
+    return m_heart['x'], m_heart['y']
+
 def chooseAction(body):
     action = PASS
+
+    powerX, powerY = findClosestPower(body)
+
     posX = random.randint(0, body["mapWidth"])
     posY = random.randint(0, body["mapHeight"])
+
     try:
         action = moveTowardsPoint(body, body["enemies"][0]["x"], body["enemies"][0]["y"])
-        if shootIfPossible(body):
-            action = SHOOT
-
     except:
-        action = moveTowardsPoint(body, posX, posY)
-        if shootIfPossible(body):
-            action = SHOOT
+        if powerX != -1:
+            action = moveTowardsPoint(body, powerX, powerY)
+        else:
+            action = moveTowardsPoint(body, posX, posY)
+
+    if shootIfPossible(body):
+        action = SHOOT
     return action
 
 
