@@ -116,7 +116,7 @@ def chooseAction(body):
 
     posX = random.randint(0, body["mapWidth"])
     posY = random.randint(0, body["mapHeight"])
-
+    '''
     try:
         action = moveTowardsPoint(body, body["enemies"][0]["x"], body["enemies"][0]["y"])
     except:
@@ -129,6 +129,19 @@ def chooseAction(body):
 
     if shootIfPossible(body):
         action = SHOOT
+    '''
+    action = moveTowardsPoint(body, body["enemies"][0]["x"], body["enemies"][0]["y"])
+
+    if powerX != -1:
+        action = moveTowardsPoint(body, powerX, powerY)
+    elif upX != -1:
+        action = moveTowardsPoint(body, upX, upY)
+        if shootIfPossible(body):
+            action = SHOOT
+    else:
+        action = moveTowardsPoint(body, posX, posY)
+        if shootIfPossible(body):
+            action = SHOOT
     return action
 
 
