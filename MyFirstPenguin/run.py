@@ -4,7 +4,7 @@ import random
 import math
 import random
 from math import *
-#newer-est shit
+#newer-est-est shit
 
 ROTATE_LEFT = "rotate-left"
 ROTATE_RIGHT = "rotate-right"
@@ -130,12 +130,15 @@ def chooseAction(body):
     if shootIfPossible(body):
         action = SHOOT
     '''
-    action = moveTowardsPoint(body, body["enemies"][0]["x"], body["enemies"][0]["y"])
+
 
     if powerX != -1:
         action = moveTowardsPoint(body, powerX, powerY)
     elif upX != -1:
-        action = moveTowardsPoint(body, upX, upY)
+        try:
+            action = moveTowardsPoint(body, body["enemies"][0]["x"], body["enemies"][0]["y"])
+        except:
+            action = moveTowardsPoint(body, upX, upY)
         if shootIfPossible(body):
             action = SHOOT
     else:
