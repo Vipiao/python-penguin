@@ -4,7 +4,7 @@ import random
 import math
 import random
 from math import *
-#newer shit
+#newer-est shit
 
 ROTATE_LEFT = "rotate-left"
 ROTATE_RIGHT = "rotate-right"
