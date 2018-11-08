@@ -4,7 +4,7 @@ import random
 import math
 import random
 from math import *
-#newest shit
+#newer shit
 
 ROTATE_LEFT = "rotate-left"
 ROTATE_RIGHT = "rotate-right"
@@ -63,6 +63,29 @@ def moveTowardsCenterOfMap(body):
     centerPointY = math.floor(body["mapHeight"] / 2)
     return moveTowardsPoint(body, centerPointX, centerPointY)
 
+def closestPowerup(body):
+    """
+    gives x, y for closest powerup
+    """
+    bonus_list = body["bonusTiles"]
+    if len(bonus_list) == 0:
+        return -1, -1
+
+    you = body['you']
+    x = you['x']
+    y = you['y']
+
+    m = 1000000
+    m_bonus = bonus_list[0]
+    for bonus in bonus_list:
+        d = sqrt((x - bonus['x'])**2 + (y - bonus['y'])**2)
+        if d < m:
+            m = d
+            m_bonus = bonus
+
+    print("Closest powerup:", m_bonus['type'], "@", m_bonus['x'], m_bonus['y'], "dist=", m)
+    return m_bonus['x'], m_bonus['y']
+
 
 
 def findClosestPower(body):
@@ -88,6 +111,8 @@ def chooseAction(body):
     action = PASS
 
     powerX, powerY = findClosestPower(body)
+    upX, upY = closestPowerup(body)
+
 
     posX = random.randint(0, body["mapWidth"])
     posY = random.randint(0, body["mapHeight"])
@@ -97,6 +122,8 @@ def chooseAction(body):
     except:
         if powerX != -1:
             action = moveTowardsPoint(body, powerX, powerY)
+        elif upX != -1:
+            action = moveTowardsPoint(body, upX, upY)
         else:
             action = moveTowardsPoint(body, posX, posY)
 
