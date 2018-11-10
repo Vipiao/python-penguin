@@ -8,6 +8,18 @@ from movement import *
 #just shit!
 
 def chooseAction(body):
+	powerX, powerY = findClosestPower(body)
+	upX, upY = closestPowerup(body)
+
+	if powerX != -1:
+		action = moveTowardsPoint(body, powerX, powerY)
+	elif upX != -1:
+		action = moveTowardsPoint(body, powerX, powerY)
+	else:
+		action = PASS
+	return action
+
+def chooseActionOld(body):
     action = PASS
 
     powerX, powerY = findClosestPower(body)
