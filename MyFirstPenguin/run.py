@@ -17,6 +17,8 @@ def chooseAction(body):
 		action = moveTowardsPoint(body, upX, upY)
 	else:
 		action = PASS
+		print(body["enemies"][0])
+	print('test')
 	return action
 
 def chooseActionOld(body):
