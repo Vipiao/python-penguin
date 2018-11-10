@@ -14,7 +14,7 @@ def chooseAction(body):
 	if powerX != -1:
 		action = moveTowardsPoint(body, powerX, powerY)
 	elif upX != -1:
-		action = moveTowardsPoint(body, powerX, powerY)
+		action = moveTowardsPoint(body, upX, upY)
 	else:
 		action = PASS
 	return action
